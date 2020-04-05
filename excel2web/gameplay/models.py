@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Game(models.Model):
-    # ForeignKey --> one to many relationship
+    # player --> one to many relationship
     # CASCADE--> If the game is deleted, all moves linked will be as well
     first_player = models.ForeignKey(User, related_name="games_first_player", on_delete=models.CASCADE)
     second_player = models.ForeignKey(User, related_name="games_second_player",  on_delete=models.CASCADE)
@@ -16,9 +16,6 @@ class Game(models.Model):
 
 
 class Move(models.Model):
-    """
-    Define fields. They are all not null by default unless specified. For that we should give an initial value
-    """
     # Primary key included by default
     x = models.IntegerField()
     y = models.IntegerField()
