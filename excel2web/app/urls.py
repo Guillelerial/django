@@ -20,5 +20,6 @@ from app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'welcome/', views.welcome_page)
+    url(r'welcome/', views.welcome_page),
+    url(r"^$", views.welcome_page)
 ]
