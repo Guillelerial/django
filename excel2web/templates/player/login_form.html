@@ -1,0 +1,18 @@
+<!doctype html>
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<!--/ url takes the name of a view and returns its url -->
+    <form role="form"
+          action="{% url 'player_login' %}"
+          method="post">
+        {% csrf_token %}
+        <p> Please Login.</p>
+        {{ form }}
+        <button type="submit" class="btn btn-success">Sign in</button>
+    </form>
+{% endblock %}
