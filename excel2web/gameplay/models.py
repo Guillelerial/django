@@ -1,7 +1,32 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+GAME_STATUS_MAP = [
+    ('F', 'First Player to move'),
+    ('S', 'Second player to move'),
+    ('W', 'First player wins'),
+    ('L', 'Second player wins'),
+    ('D', 'Draw')
+]
+
+
+class GamesQuerySet(models.QuerySet):
+    """
+    Have a QuerySet class allow us to define the 'API' for this app
+     and to keep the views.py files as limited as possible to just the calls to render.
+    """
+    def games_for_user(self, user):
+        return self.filter(
+            Q(first_player=user) | Q(second_player=user)
+        )
+
+    def active(self):
+        return self.filter(
+            Q(status='F') | Q(status='S')
+        )
 
 
 class Game(models.Model):
@@ -12,7 +37,13 @@ class Game(models.Model):
     start_time = models.DateTimeField(auto_now_add=True)
     last_time = models.DateTimeField(auto_now=True)
 
-    status = models.CharField(max_length=1, default='F')
+    status = models.CharField(max_length=1, default='F', choices=GAME_STATUS_MAP)
+
+    objects = GamesQuerySet.as_manager()
+
+    def __str__(self):
+        # This is what will be shown on the UI to represent a Game entry
+        return f"{self.first_player} vs {self.second_player}"
 
 
 class Move(models.Model):
