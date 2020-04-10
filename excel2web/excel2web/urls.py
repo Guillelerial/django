@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'welcome/', views.welcome_page, name="welcome_page"),
     path(r'player/', include('player.urls')),
-    # The above entry chops anything before 'player/' and then looks up the url on the player app
+    path(r'games/', include('gameplay.urls')),
     url(r"^$", views.welcome_page)
 ]

@@ -49,6 +49,6 @@ def accept_invitation(request, id):
         )
         # game.save() is not implicit on the create call
         invitation.delete()
-        return redirect('player_home')
+        return redirect(game)  # We can do it since we defined get_absolute_path on the Game model
 
     return render(request, "player/accept_invitation_form.html", {'invitation': invitation})

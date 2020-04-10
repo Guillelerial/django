@@ -1,0 +1,46 @@
+<!doctype html>
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Game '{{ game }}'
+{% endblock title %}
+
+{% block styling %}
+    {{ block.super }}
+    <style type="text/css">
+        .game-table {
+            width: 300px;
+            border-width: 2px;
+        }
+        .game-cell {
+            background-color: #debb27;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            vertical-align: middle !important;
+            font-size: 60px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div  class="col-md-5">
+        <table class="table table-bordered game-table">
+            {% for row in game.board %}
+                <tr>
+                    {% for move in row %}
+                        <td class="game-cell">
+                            {% if move and move.by_first_player %}
+                                X
+                            {% elif move and not move.by_first_player %}
+                                0
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <p> This is the detail for the game '{{ game.id }}': {{game}}  </p>
+{% endblock %}
