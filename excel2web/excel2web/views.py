@@ -1,5 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def welcome_page(request):
-    return HttpResponse("Hello World!")
+    return render(request, "excel2web/welcome.html")
