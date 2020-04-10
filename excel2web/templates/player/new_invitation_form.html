@@ -9,6 +9,7 @@ New invitation
 <!--/ url takes the name of a view and returns its url -->
     <form action="{% url 'player_new_invitation' %}" method="post">
         {{ form }}
+        {% csrf_token %}
         <button type="submit" class="btn btn-success">Send invitation</button>
     </form>
 {% endblock %}
