@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-{ extends 
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-   <link href="{% static 'player/style.css' %}" rel="stylesheet">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome</h1>
-    Hi! this is a template test
-    <ul>
-        {% for g in games %}
-            <li> Game {{g.id}}:'{{g}}'; some more fixed text </li>
-        {% endfor %}
-        -----------------------------------
-        {% for g in active_games %}
-            <li> Game '{g.id}}:'{{g}}' is active </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<!doctype html>
+{% extends "player/base.html" %}
+
+{% block content %}
+<h1>Welcome</h1>
+Hi! this is a template test
+<ul>
+    {% for g in games %}
+        <li> Game {{g.id}}:'{{g}}'; some more fixed text </li>
+    {% endfor %}
+    -----------------------------------
+    {% for g in active_games %}
+        <li> Game '{g.id}}:'{{g}}' is active </li>
+    {% endfor %}
+</ul>
+{% endblock %}
