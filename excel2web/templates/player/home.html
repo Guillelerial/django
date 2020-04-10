@@ -2,15 +2,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome</h1>
-Hi! this is a template test
-<ul>
-    {% for g in games %}
-        <li> Game {{g.id}}:'{{g}}'; some more fixed text </li>
-    {% endfor %}
-    -----------------------------------
-    {% for g in active_games %}
-        <li> Game '{g.id}}:'{{g}}' is active </li>
-    {% endfor %}
-</ul>
+    <h1>Welcome</h1>
+    Hi! this is a template test
+    <ul>
+        {% for g in games %}
+            <li> Game {{g.id}}:'{{g}}'; some more fixed text </li>
+        {% endfor %}
+        -----------------------------------
+        {% for g in active_games %}
+            <li> Game '{g.id}}:'{{g}}' is active </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'player_new_invitation' %}">
+        Invite another ser to play a game
+    </a>
 {% endblock %}

@@ -1,0 +1,14 @@
+<!doctype html>
+{% extends "base.html" %}
+
+{% block title %}
+New invitation
+{% endblock %}
+
+{% block content %}
+<!--/ url takes the name of a view and returns its url -->
+    <form action="{% url 'player_new_invitation' %}" method="post">
+        {{ form }}
+        <button type="submit" class="btn btn-success">Send invitation</button>
+    </form>
+{% endblock %}
